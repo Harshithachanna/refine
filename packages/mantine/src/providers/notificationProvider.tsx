@@ -6,7 +6,7 @@ import {
   hideNotification,
 } from "@mantine/notifications";
 import { ActionIcon, Box, Group, Text } from "@mantine/core";
-import { IconCheck, IconRotate2, IconX } from "@tabler/icons-react";
+import { IconCheck, IconRotate2, IconX, IconInfoCircle } from "@tabler/icons-react";
 
 import { RingCountdown } from "@components";
 
@@ -126,13 +126,15 @@ export const useNotificationProvider = (): NotificationProvider => {
         if (isNotificationActive(key)) {
           updateNotification({
             id: key!,
-            color: type === "success" ? "primary" : "red",
+            color: type === "success" ? "primary" : type === "info" ? "blue" : "red",
             icon:
-              type === "success" ? (
-                <IconCheck size={18} />
-              ) : (
-                <IconX size={18} />
-              ),
+            type === "success" ? (
+              <IconCheck size={18} />
+            ) : type === "info" ? (
+              <IconInfoCircle size={18} />
+            ) : (
+              <IconX size={18} />
+            ),
             message,
             title: description,
             autoClose: 5000,
